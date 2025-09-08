@@ -1,0 +1,3 @@
+﻿Prompts:
+- Kallar sig själva omgående, med chans för att ta slut på minnet (typ omöjligt tho)
+- While loop hade varit säkrare

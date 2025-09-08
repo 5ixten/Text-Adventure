@@ -3,10 +3,13 @@
 public class Player : Character
 {
     public Inventory Inventory;
+    public Room CurrentRoom;
 
-    public Player(string name, int maxHealth)
+    public Player(string name, Room startRoom, int maxHealth)
     {
         Name = name;
+        CurrentRoom = startRoom;
+        
         MaxHealth = maxHealth;
         Health =  maxHealth;
         

@@ -13,10 +13,11 @@ public static class Rooms
     {
         BasementCell = new Room(
             "Basement Cell",
-            null, 
-            "Bronze Sword",
+            "You open your eyes, there's dampness in the air. Your surroundings consist of dark concrete walls and a locked steel door...",
             new() {
-                {"Forward", BasementHall} }
+                {"Exit the prison cell", BasementHall} },
+            null, 
+            "Bronze Sword"
            );
     }
 }

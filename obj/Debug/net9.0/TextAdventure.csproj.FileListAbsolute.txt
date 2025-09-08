@@ -12,3 +12,4 @@ C:\Users\sixte\Assignments\TextAdventure\obj\Debug\net9.0\refint\TextAdventure.d
 C:\Users\sixte\Assignments\TextAdventure\obj\Debug\net9.0\TextAdventure.pdb
 C:\Users\sixte\Assignments\TextAdventure\obj\Debug\net9.0\TextAdventure.genruntimeconfig.cache
 C:\Users\sixte\Assignments\TextAdventure\obj\Debug\net9.0\ref\TextAdventure.dll
+C:\Users\sixte\Assignments\TextAdventure\obj\Debug\net9.0\TextAdventure.sourcelink.json
