@@ -1,8 +1,8 @@
 ﻿namespace TextAdventure;
 
-public class Challenge
+public interface Challenge
 {
-    public required string Name;
-    public required string Description;
-    public bool Complete = false;
+    public string Name { get; set; }
+    public string Description { get; set; }
+    public bool IsComplete();
 }

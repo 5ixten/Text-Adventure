@@ -2,12 +2,8 @@
 
 namespace TextAdventure;
 
-public class Item
+public interface Item
 {
 	public string Name { get; set; }
-
-    public Item(string name)
-	{
-		Name = name;
-    }
+	public void Use(Character character);
 }
