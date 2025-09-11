@@ -4,13 +4,13 @@ public class Room
 {
     public string? Name;
     public string? Introduction;
-    public string? Challenge;
-    public string? Items;
+    public Challenge? Challenge;
+    public List<Item>? Items;
     public Dictionary<string, Room> ConnectedRooms = new();
 
     public bool Introduced { get; private set; } = false;
 
-    public Room(string name, string introduction, string? challenge, string? items)
+    public Room(string name, string introduction, Challenge? challenge, List<Item>? items)
     {
         Name = name;
         Introduction = introduction;
@@ -22,16 +22,38 @@ public class Room
     {
         ConnectedRooms.Add(prompt, room);
     }
-    
-    public void WriteInfo()
-    {
-        Console.Clear();
-        if (!Introduced)
-        {
-            Introduced = true;
-            Console.WriteLine(Introduction);
-        }
 
+    public bool ChallengeComplete()
+    {
+        return Challenge == null || Challenge.IsComplete();
+    }
+
+    public void DisplayItems()
+    {
+        if (!ChallengeComplete() || Items == null)
+        {
+            return;
+        }
+        
+        // List all items available
+        List<String> itemNames = Items.Select(i => i.Name).ToList();
+        string? selectedItemName = Prompt.GetOption("Available items:", itemNames, true);
+        if (selectedItemName == null)
+            return;
+        
+        // Select and move item to inventory
+        Item selectedItem =  Items.FirstOrDefault(i => i.Name == selectedItemName);
+        Game.Player.Inventory.AddItem(selectedItem);
+        Items.Remove(selectedItem);
+    }
+
+    public void TryTravel()
+    {
+        if (!ChallengeComplete())
+        {
+            return;
+        }
+        
         List<string> keys = new();
         foreach (var otherRoom in ConnectedRooms)
         {
@@ -40,11 +62,22 @@ public class Room
 
         Room? selectedRoom = null;
         // Enter next room if challenge is done/doesn't exist
-        if (Challenge == null || Challenge == "Completed")
+        if (Challenge == null || Challenge.IsComplete())
         {
-            string key = Prompt.GetOption("Available actions:", keys, ConsoleColor.DarkYellow);
+            string? key = Prompt.GetOption("Available actions:", keys, true);
+            if (key == null)
+                return;
             selectedRoom = ConnectedRooms[key];
         }
         Game.EnterRoom(selectedRoom);
+    }
+    
+    public void WriteInfo()
+    {
+        if (!Introduced)
+        {
+            Introduced = true;
+            Prompt.WriteMessage(Introduction);
+        }
     }
 }

@@ -8,27 +8,33 @@ public static class Rooms
         "Basement Cell",
         "You open your eyes, there's dampness in the air. Your surroundings consist of dark concrete walls and a locked steel door...",
         null,
-        null);
+        null
+    );
     
     public static Room BasementHall = new Room(
         "Basement Hall",
-        "You step into a claustrophobic hallway. In front of you stands a menacing goblin.",
+        "You step into a claustrophobic hallway. Something shiny is on the floor...",
         null,
-        null);
+        new () {
+            new Weapon("Bronze Sword", ItemType.Offensive, 10f, 2f)
+        } 
+    );
     
-    public static Room BasementStairs = new Room(
-        "Basement Stairs",
-        "Walking stair",
-        null,
-        null);
+    public static Room BasementExit = new Room(
+        "Basement Exit",
+        "As you are only steps away from leaving the basement, a menacing goblin blocks your path. It charges at you, preparing to swing its crooked axe.",
+        new EnemyChallenge( new()
+            {
+                new Enemy("Goblin", 30, new Weapon("Crooked axe", ItemType.Offensive, 15f, 1.2f))
+            }),
+        new () {
+            new Weapon("DIAMOND Sword", ItemType.Offensive, 10f, 2f)
+        } 
+    );
     
-    //public static Room LivingRoom = new Room();
-   // public static Room Outside = new Room();
-    //public static Room Portal = new Room();
-
     public static void Initialize()
     {
         BasementCell.AddConnection(BasementHall, "Exit the prison cell");
-        BasementHall.AddConnection(BasementStairs, "Go upstairs");
+        BasementHall.AddConnection(BasementExit, "Exit Basement");
     }
 }

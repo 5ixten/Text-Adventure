@@ -7,7 +7,6 @@ public class Player : Character
     public Player(string name, int maxHealth)
     {
         Name = name;
-
         MaxHealth = maxHealth;
         Health =  maxHealth;
         

@@ -22,35 +22,41 @@ public static class Prompt
         return input;
     }
     
-    public static string GetOption(string message, List<string> options, ConsoleColor? foreground = null)
+    public static string? GetOption(string message, List<string> options, bool canBack = false, ConsoleColor foreground = ConsoleColor.DarkYellow)
     {
         Console.ResetColor();
+        Console.ForegroundColor = foreground;
         
-        Console.ForegroundColor = foreground ?? Console.ForegroundColor;
+        if (canBack)
+            options.Add("Back");
+        
         string optionText = "";
 
         for (int i = 0; i < options.Count; i++)
         {
-            optionText += $"{i+1}. {options[i]}";
+            optionText += $"{i+1}. {options[i]}\n";
         }
 
         Console.WriteLine("\n" + message);
         Console.WriteLine(optionText);
         
         Console.ResetColor();
-        Console.Write("\nWhat would you like to do? (enter number): ");
+        Console.Write("What would you like to do? (enter number): ");
 
         int number;
         if (int.TryParse(Console.ReadLine(), out number))
         {
             if ((number-1) < 0 || number > options.Count)
             {
-                return GetOption(message, options, foreground);
+                return GetOption(message, options, canBack, foreground);
             }
+
+            if (options[number - 1] == "Back")
+                return null;
             return options[number-1];
         }
 
-        return GetOption(message, options, foreground);
+        return GetOption(message, options, canBack, foreground);
     }
 
     public static void WriteMessage(string message, ConsoleColor? foreground = null)

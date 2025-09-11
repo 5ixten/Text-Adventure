@@ -3,6 +3,6 @@
 public interface Challenge
 {
     public string Name { get; set; }
-    public string Description { get; set; }
+    public void Start();
     public bool IsComplete();
 }

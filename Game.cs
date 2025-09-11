@@ -1,4 +1,6 @@
-﻿namespace TextAdventure;
+﻿using System.ComponentModel;
+
+namespace TextAdventure;
 
 public static class Game
 {
@@ -22,11 +24,51 @@ public static class Game
         GameLoop();
     }
 
+    public static void TravelOrLoot()
+    {
+        List<string> options = new() { "Travel" };
+        
+        if (CurrentRoom.Items != null && CurrentRoom.Items.Count > 0)
+            options.Add("Loot");
+        
+        string playerAction = Prompt.GetOption("What you want to do?", options);
+        switch (playerAction)
+        {
+            case "Loot":
+                CurrentRoom.DisplayItems();
+                break;
+            case "Travel":
+                CurrentRoom.TryTravel();
+                break;
+        }
+    }
+
+    public static void StartChallenge()
+    {
+        if (CurrentRoom.ChallengeComplete())
+        {
+            Console.WriteLine("Error: Can't start challenge");
+            return;
+        }
+        
+        CurrentRoom.Challenge.Start();
+    }
+
     public static void GameLoop()
     {
+        Console.Clear();
         CurrentRoom.WriteInfo();
 
+        if (!CurrentRoom.ChallengeComplete())
+        {
+            StartChallenge();
+        }
 
+        if (CurrentRoom.ChallengeComplete())
+        {
+            TravelOrLoot();
+        }
+        
         if (!Won)
         {
             GameLoop();
@@ -36,7 +78,7 @@ public static class Game
     public static void EnterRoom(Room newRoom)
     {
         // Check if the current room is completed
-        if (CurrentRoom.Challenge != null && CurrentRoom.Challenge != "Completed")
+        if (CurrentRoom.Challenge != null && !CurrentRoom.Challenge.IsComplete())
         {
             Prompt.WriteMessage("Can't switch room without completing challenge", ConsoleColor.Red);
             return;
