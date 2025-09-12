@@ -78,11 +78,11 @@ public static class Game
     public static void EnterRoom(Room newRoom)
     {
         // Check if the current room is completed
-        if (CurrentRoom.Challenge != null && !CurrentRoom.Challenge.IsComplete())
+        /*if (CurrentRoom.Challenge != null && !CurrentRoom.Challenge.IsComplete())
         {
             Prompt.WriteMessage("Can't switch room without completing challenge", ConsoleColor.Red);
             return;
-        }
+        }*/
 
         // Check if the new room, can be reached from the current room
         bool canEnter = false;

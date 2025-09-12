@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sixte\\Text-Adventure\\TextAdventure.csproj": {}
+    "C:\\Users\\sixte\\Assignments\\TextAdventure\\TextAdventure.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sixte\\Text-Adventure\\TextAdventure.csproj": {
+    "C:\\Users\\sixte\\Assignments\\TextAdventure\\TextAdventure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sixte\\Text-Adventure\\TextAdventure.csproj",
+        "projectUniqueName": "C:\\Users\\sixte\\Assignments\\TextAdventure\\TextAdventure.csproj",
         "projectName": "TextAdventure",
-        "projectPath": "C:\\Users\\sixte\\Text-Adventure\\TextAdventure.csproj",
+        "projectPath": "C:\\Users\\sixte\\Assignments\\TextAdventure\\TextAdventure.csproj",
         "packagesPath": "C:\\Users\\sixte\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sixte\\Text-Adventure\\obj\\",
+        "outputPath": "C:\\Users\\sixte\\Assignments\\TextAdventure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -65,7 +65,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

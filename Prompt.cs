@@ -27,7 +27,7 @@ public static class Prompt
         Console.ResetColor();
         Console.ForegroundColor = foreground;
         
-        if (canBack)
+        if (canBack && !options.Contains("Back"))
             options.Add("Back");
         
         string optionText = "";

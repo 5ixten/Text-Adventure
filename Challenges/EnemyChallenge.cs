@@ -20,7 +20,7 @@ public class EnemyChallenge : Challenge
         {
             round++;
             Console.Clear();
-            Prompt.WriteMessage($"Begin round {round}");
+            Prompt.WriteMessage($"Fight Round {round}");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"{Game.Player.Name}'s Health: {Game.Player.Health}/{Game.Player.MaxHealth}");
             

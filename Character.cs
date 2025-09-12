@@ -20,4 +20,10 @@ public class Character
             Prompt.WriteMessage($"- {Name} was killed", ConsoleColor.Red);
         }
     }
+    
+    public void Heal(float amount)
+    {
+        Health = Math.Clamp(Health + amount, 0, MaxHealth);
+        Prompt.WriteMessage($"- {Name} has been healed {amount}", ConsoleColor.Green);
+    }
 }
