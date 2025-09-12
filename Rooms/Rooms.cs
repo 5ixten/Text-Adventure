@@ -48,6 +48,7 @@ public static class Rooms
         new()
         {
             new HealthPotion("Health Potion", ItemType.Defensive, 100f),
+            new HealthPotion("Health Potion", ItemType.Defensive, 100f),
             new HealthPotion("Health Potion", ItemType.Defensive, 100f)
         }
     );
