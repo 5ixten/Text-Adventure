@@ -6,18 +6,13 @@ public static class Rooms
 {
     public static Room BasementCell = new Room(
         "Basement Cell",
-        "You open your eyes, there's dampness in the air. Your surroundings consist of dark concrete walls and a locked steel door...",
-        null,
-        new()
-        {
-            new Key("Port Key")
-        }
+        "You open your eyes, there's dampness in the air. Your surroundings consist of dark concrete walls and a locked steel door..."
     );
     
     public static Room BasementHall = new Room(
         "Basement Hall",
         "You step into a claustrophobic hallway. Something shiny is on the floor...",
-        new KeyChallenge("Key challenge"),
+        null,
         new () {
             new Weapon("Bronze Sword", ItemType.Offensive, 10f, 2f),
         }
@@ -76,6 +71,11 @@ public static class Rooms
         }
     );
     
+    public static Room Jeffhole = new Room(
+        "The jeff hole",
+        "A big hole"
+    );
+    
     public static void Initialize()
     {
         BasementCell.AddConnection(BasementHall, "Exit the prison cell");
@@ -88,5 +88,6 @@ public static class Rooms
         LivingRoom.AddConnection(LargePort, "Large port");
         
         Kitchen.AddConnection(MysteriousPantry, "Mysterious pantry");
+        LargePort.AddConnection(Jeffhole, " you see something dark and mysteriiys");
     }
 }

@@ -3,7 +3,7 @@
 public class KeyChallenge : Challenge
 {
     public string Name { get; set; }
-    public Item? key;
+    private Item? UsedKey;
 
     public KeyChallenge(string name)
     {
@@ -21,10 +21,16 @@ public class KeyChallenge : Challenge
             Prompt.WriteMessage("Return to last room");
             Game.EnterRoom(Game.VisitedRooms.First(r => r.ConnectedRooms.ContainsValue(Game.CurrentRoom)));
         }
+        else
+        {
+            Prompt.WriteMessage("Unlock with key", ConsoleColor.Green);
+            Game.Player.Inventory.Items.Remove(key);
+            UsedKey = key;
+        }
     }
 
     public bool IsComplete()
     {
-        return key != null;
+        return UsedKey != null;
     }
 }
