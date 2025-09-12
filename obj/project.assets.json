@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sixte\\Assignments\\TextAdventure\\TextAdventure.csproj",
+      "projectUniqueName": "C:\\Users\\sixte\\Text-Adventure\\TextAdventure.csproj",
       "projectName": "TextAdventure",
-      "projectPath": "C:\\Users\\sixte\\Assignments\\TextAdventure\\TextAdventure.csproj",
+      "projectPath": "C:\\Users\\sixte\\Text-Adventure\\TextAdventure.csproj",
       "packagesPath": "C:\\Users\\sixte\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sixte\\Assignments\\TextAdventure\\obj\\",
+      "outputPath": "C:\\Users\\sixte\\Text-Adventure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -72,7 +72,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

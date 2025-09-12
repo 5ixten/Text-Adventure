@@ -29,9 +29,18 @@ public class EnemyChallenge : Challenge
             Console.WriteLine($"{targetEnemy.Name}'s Health: {targetEnemy.Health}/{targetEnemy.MaxHealth}");
             
             // Get what item to use from input
-            List<string> itemNames = Game.Player.Inventory.Items.Select(i => i.Name).ToList();
-            string itemName = Prompt.GetOption("Item to use", itemNames);
-            Item item = Game.Player.Inventory.Items.First(i => i.Name == itemName);
+            List<string> actionNames = Game.Player.Inventory.Items.Where(i => i.ItemType != ItemType.Tool).Select(i => i.Name).ToList();
+            string escapeString = "Escape to previous room";
+            actionNames.Add(escapeString);
+            
+            string actionName = Prompt.GetOption("Items and actions to use", actionNames);
+            if (actionName == escapeString)
+            {
+                Game.EnterRoom(Game.VisitedRooms[Game.VisitedRooms.Count - 2]);
+                return;
+            }
+            
+            Item item = Game.Player.Inventory.Items.First(i => i.Name == actionName);
 
             // Use on enemy if offensive item, use on player if defensive item
             item.Use(item.ItemType == ItemType.Offensive ? targetEnemy : Game.Player);

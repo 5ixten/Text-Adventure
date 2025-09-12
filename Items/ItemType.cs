@@ -3,5 +3,6 @@
 public enum ItemType
 {
     Offensive,
-    Defensive
+    Defensive,
+    Tool
 }

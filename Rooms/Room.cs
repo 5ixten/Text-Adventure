@@ -14,7 +14,7 @@ public class Room
 
     public bool Introduced { get; private set; } = false;
 
-    public Room(string name, string introduction, Challenge? challenge, List<Item>? items, int? maxLooting = null)
+    public Room(string name, string introduction, Challenge? challenge = null, List<Item>? items = null, int? maxLooting = null)
     {
         Name = name;
         Introduction = introduction;
@@ -88,7 +88,7 @@ public class Room
         // Enter next room if challenge is done/doesn't exist
         if (Challenge == null || Challenge.IsComplete())
         {
-            string? key = Prompt.GetOption("Available actions:", keys, true);
+            string? key = Prompt.GetOption("Travel options:", keys, true);
             if (key == null)
                 return;
             selectedRoom = ConnectedRooms[key];
