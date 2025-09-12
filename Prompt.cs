@@ -27,11 +27,13 @@ public static class Prompt
         Console.ResetColor();
         Console.ForegroundColor = foreground;
         
+        // Provide "Back" option if allowed
         if (canBack && !options.Contains("Back"))
             options.Add("Back");
         
         string optionText = "";
 
+        // Make a list string
         for (int i = 0; i < options.Count; i++)
         {
             optionText += $"{i+1}. {options[i]}\n";
@@ -43,19 +45,24 @@ public static class Prompt
         Console.ResetColor();
         Console.Write("What would you like to do? (enter number): ");
 
+        // Get number input that decides what option to return
         int number;
         if (int.TryParse(Console.ReadLine(), out number))
         {
+            // Try again if invalid number
             if ((number-1) < 0 || number > options.Count)
             {
                 return GetOption(message, options, canBack, foreground);
             }
 
+            // Return if player wants to back out
             if (options[number - 1] == "Back")
                 return null;
+            
             return options[number-1];
         }
-
+        
+        // Try again if couldn't parse integer
         return GetOption(message, options, canBack, foreground);
     }
 

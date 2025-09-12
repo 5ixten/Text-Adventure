@@ -82,6 +82,12 @@ public class EnemyChallenge : Challenge
             {
                 offensiveEnemy.Weapon.Use(Game.Player);
             }
+
+            if (Game.Player.IsDefeated)
+            {
+                Game.PlayerDied();
+                return;
+            }
         }
     }
 

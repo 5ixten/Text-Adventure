@@ -8,7 +8,7 @@ public static class Game
     public static Room CurrentRoom { get; private set; } = Rooms.BasementCell;
     public static List<Room> VisitedRooms { get; set; } = new List<Room>();
     
-    private static bool Won = false;
+    private static bool Won;
 
     public static void Start()
     {
@@ -43,6 +43,8 @@ public static class Game
                 TravelOrLoot();
             }
         }
+        Prompt.WriteMessage($"After entering the magic portal you've returned to your homeworld." +
+                            $" Congrats {Player.Name}, you won the game!", ConsoleColor.DarkYellow);
     }
 
     public static void TravelOrLoot()
@@ -95,30 +97,22 @@ public static class Game
         CurrentRoom.Challenge.Start();
     }
 
+    public static void PlayerDied()
+    {
+        Prompt.WriteMessage("After perishing in the midst of battle, you suddenly regain consciousness, back where you started...", ConsoleColor.DarkYellow);
+        Game.Player.Health = Game.Player.MaxHealth;
+        EnterRoom(Rooms.BasementCell);
+    }
+
     public static void EnterRoom(Room newRoom)
     {
-        // Check if the current room is completed
-        /*if (CurrentRoom.Challenge != null && !CurrentRoom.Challenge.IsComplete())
-        {
-            Prompt.WriteMessage("Can't switch room without completing challenge", ConsoleColor.Red);
-            return;
-        }*/
-
-        // Check if the new room, can be reached from the current room
-       /* bool canEnter = false;
-        foreach (var otherRoom in Game.CurrentRoom.ConnectedRooms)
-        {
-            if (otherRoom.Value == newRoom)
-            {
-                canEnter = true;
-                break;
-            }
-        }
-        
-        if (!canEnter) return;
-        */
         CurrentRoom = newRoom;
         if (!VisitedRooms.Contains(newRoom))
             VisitedRooms.Add(CurrentRoom);
+
+        if (CurrentRoom == Rooms.MagicPortal)
+        {
+            Won = true;
+        }
     }
 }

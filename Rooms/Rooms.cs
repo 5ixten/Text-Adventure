@@ -14,7 +14,7 @@ public static class Rooms
         "You step into a claustrophobic hallway. Something shiny is on the floor...",
         null,
         new () {
-            new Weapon("Bronze Sword", ItemType.Offensive, 10f, 2f),
+            new Weapon("Bronze Sword", ItemType.Offensive, 8f, 2f),
         }
     );
     
@@ -43,7 +43,7 @@ public static class Rooms
     
     public static Room Kitchen = new Room(
         "Kitchen",
-        "You enter a kitchen",
+        "As soon as you enter this room, the smell of rotten food hits your nostrils. Luckily, the cabinets are full of potions...",
         null,
         new()
         {
@@ -55,7 +55,7 @@ public static class Rooms
     
     public static Room MysteriousPantry = new Room(
         "Mysterious Pantry",
-        "You enter a mysterious pantry, there are some dices on the floor...",
+        "You enter a mysterious pantry, there are some dices and a magic box on the floor...",
         new DiceRollChallenge(2, 6),
         new()
         {
@@ -65,30 +65,40 @@ public static class Rooms
     
     public static Room LargePort = new Room(
         "Large Port",
-        "You approach a large port",
+        "You approach a grand and enormous port",
         new KeyChallenge("Key challenge"),
         new () {
             new Weapon("Flaming Spear", ItemType.Offensive, 50f, 5f),
         }
     );
     
-    public static Room Jeffhole = new Room(
-        "The jeff hole",
-        "A big hole"
+    public static Room OldYard = new Room(
+        "Old Yard",
+        "After opening the port, fresh air makes your hair swirl. You're now standing in the middle of an old yard, there are growls and howls in the distance...",
+        new EnemyChallenge( new()
+        {
+            new Enemy("Dire Wolf", 150, new Weapon("Claws", ItemType.Offensive, 20f, 2f)),
+            new Enemy("Boss Goblin", 250, new Weapon("Spiked Wooden Club", ItemType.Offensive, 15f, 4f))
+        })
+    );
+    
+    public static Room MagicPortal = new Room(
+        "Magic Portal",
+        "You approach a glistering portal, a portal to your home world!"
     );
     
     public static void Initialize()
     {
         BasementCell.AddConnection(BasementHall, "Exit the prison cell");
-        
         BasementHall.AddConnection(BasementExit, "Exit Basement");
-        
         BasementExit.AddConnection(LivingRoom, "Dark door");
         
-        LivingRoom.AddConnection(Kitchen, "Kitchen");
         LivingRoom.AddConnection(LargePort, "Large port");
+        LargePort.AddConnection(OldYard, "Old Yard");
         
+        LivingRoom.AddConnection(Kitchen, "Kitchen");
         Kitchen.AddConnection(MysteriousPantry, "Mysterious pantry");
-        LargePort.AddConnection(Jeffhole, " you see something dark and mysteriiys");
+        
+        OldYard.AddConnection(MagicPortal, "Magic Portal");
     }
 }
